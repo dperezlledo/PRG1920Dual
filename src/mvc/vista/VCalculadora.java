@@ -33,6 +33,7 @@ public class VCalculadora extends JFrame implements ICalculadora{
         String [] op = {"+", "-", "*", "/"};
         jcboOperacion = new JComboBox(op);
         jbtnCalcular = new JButton("Calcular");
+        jbtnCalcular.setActionCommand("david");
         jbtnLimpiar = new JButton("Limpiar");
         jlbResul = new JLabel("Resultado");
         jlbResultado = new JLabel("0");

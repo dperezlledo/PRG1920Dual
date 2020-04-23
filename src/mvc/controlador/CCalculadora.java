@@ -28,7 +28,7 @@ public class CCalculadora implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         float a, b, result = 0;
 
-        if (e.getActionCommand().equals("Calcular")) {
+        if (e.getActionCommand().equals("david")) {
             a = vista.getDato1();
             b = vista.getDato2();
             modelo.setD1(a);
