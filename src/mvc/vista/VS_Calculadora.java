@@ -16,7 +16,7 @@ import mvc.controlador.CCalculadora;
  *
  * @author David
  */
-public class VCalculadora extends JFrame implements ICalculadora{
+public class VS_Calculadora extends JFrame implements ICalculadora{
     private JTextField jtxtDato1, jtxtDato2;
     private JComboBox jcboOperacion;
     private JLabel jlbResultado, jlbtxt1, jlbtxt2, jlbOperacion, jlbResul;
@@ -24,7 +24,7 @@ public class VCalculadora extends JFrame implements ICalculadora{
     
     private CCalculadora controlador;
     
-    public VCalculadora() {     
+    public VS_Calculadora() {     
         jlbtxt1 = new JLabel("Dato 1");
         jtxtDato1 = new JTextField();
         jlbtxt2 = new JLabel ("Dato 2");
@@ -33,7 +33,7 @@ public class VCalculadora extends JFrame implements ICalculadora{
         String [] op = {"+", "-", "*", "/"};
         jcboOperacion = new JComboBox(op);
         jbtnCalcular = new JButton("Calcular");
-        jbtnCalcular.setActionCommand("david");
+        jbtnCalcular.setActionCommand("calcular");
         jbtnLimpiar = new JButton("Limpiar");
         jlbResul = new JLabel("Resultado");
         jlbResultado = new JLabel("0");

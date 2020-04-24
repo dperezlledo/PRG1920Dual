@@ -5,9 +5,9 @@
  */
 package main;
 
-import mvc.controlador.CCalculadora;
-import mvc.modelo.MCalculadora;
-import mvc.vista.VCalculadora;
+import mvc.controlador.*;
+import mvc.modelo.*;
+import mvc.vista.*;
 
 /**
  *
@@ -16,7 +16,8 @@ import mvc.vista.VCalculadora;
 public class Run {
     public static void main(String[] args) {
         MCalculadora modelo = new MCalculadora();
-        VCalculadora vista = new VCalculadora();        
+        VS_Calculadora vista = new VS_Calculadora();        
+        //VC_Calculadora vista = new VC_Calculadora();        
         CCalculadora contrador = new CCalculadora(vista,modelo);        
         
         vista.setControlador(contrador);
