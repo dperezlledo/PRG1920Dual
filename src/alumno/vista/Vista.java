@@ -9,6 +9,8 @@ import alumno.controlador.Controlador;
 import alumno.modelo.Alumno;
 import alumno.modelo.Modelo;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -17,36 +19,45 @@ import javax.swing.*;
  */
 public class Vista extends JFrame implements IVista {
 
-    private GridLayout gl, gl1;
-    private JButton siguiente, anterior, primero, ultimo;
+    private GridLayout gl, gl1, gsur;
+    private JButton siguiente, anterior, primero, ultimo,alta,limpiar, baja, modificar,consulta;
     private JLabel id, nombre, apellido, edad;
     private JTextField id1, nombre1, apellido1, edad1;
     private BorderLayout bl;
-    private JPanel panelCentro, panelNorte;
+    private JPanel panelCentro, panelNorte, panelSur;
     private Controlador control;
 
-    public Vista() {
-
+    public Vista() {        
         panelCentro = new JPanel();
         panelNorte = new JPanel();
+        panelSur = new JPanel();
         bl = new BorderLayout();
         gl = new GridLayout(4, 2);
         gl1 = new GridLayout(1, 4);
+        gsur = new GridLayout(1,5);
+        // Instanciamos los botones 
         siguiente = new JButton("Siguiente");
         anterior = new JButton("Anterior");
         primero = new JButton("Primero");
         ultimo = new JButton("Ultimo");
+        alta= new JButton("Alta");
+        limpiar= new JButton("Limpiar");
+        consulta = new JButton("Consulta");
+        modificar = new JButton("Modificar");        
+        baja = new JButton("Baja");
+        // Instanciamos las etiquetas y textFields
         id = new JLabel("Id");
         edad = new JLabel("Edad");
         nombre = new JLabel("Nombre");
         apellido = new JLabel("Apellido");
-        id1 = new JLabel();
-        edad1 = new JLabel();
-        nombre1 = new JLabel();
-        apellido1 = new JLabel();
+        id1 = new JTextField();
+        edad1 = new JTextField();
+        nombre1 = new JTextField();
+        apellido1 = new JTextField();
 
         panelNorte.setLayout(gl1);
         panelCentro.setLayout(gl);
+        panelSur.setLayout(gsur);
         panelCentro.add(id);
         panelCentro.add(id1);
         panelCentro.add(nombre);
@@ -59,71 +70,89 @@ public class Vista extends JFrame implements IVista {
         panelNorte.add(anterior);
         panelNorte.add(siguiente);
         panelNorte.add(ultimo);
-
+        panelSur.add(limpiar);
+        panelSur.add(alta);
+        panelSur.add(modificar);
+        panelSur.add(baja);
+        panelSur.add(consulta);
+        
         getContentPane().setLayout(bl);
         getContentPane().add(panelNorte, BorderLayout.NORTH);
         getContentPane().add(panelCentro, BorderLayout.CENTER);
+        getContentPane().add(panelSur, BorderLayout.SOUTH);
 
-        siguiente.setActionCommand("siguiente");
-        anterior.setActionCommand("anterior");
-
+        siguiente.setActionCommand("Siguiente");
+        anterior.setActionCommand("Anterior");
+        primero.setActionCommand("Primero");
+        ultimo.setActionCommand("Ultimo");
+        alta.setActionCommand("Alta");        
+        baja.setActionCommand("Baja");      
+        
+        
+        limpiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                id1.setText("");
+                apellido1.setText("");
+                nombre1.setText("");
+                edad1.setText("");
+            }
+        });
+        pack();
+        setTitle("Mantenimiento de Alumnos");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-    public void setControlador(Controlador cc) {
-        this.control = cc;
-        siguiente.addActionListener(this.control);
-        anterior.addActionListener(this.control);
-        ultimo.addActionListener(this.control);
-        primero.addActionListener(this.control);
-    }
-
-    public void setId(int id) {
-        id1.setText(id + "");
-    }
-
-    public void setEdad(int edad) {
-        edad1.setText(edad + "");
-    }
-
-    public void setApellido(String ape) {
-        apellido1.setText(ape);
-    }
-
-    public void setNombre(String nom) {
-        id1.setText(nom);
     }
 
     @Override
     public Alumno getAlumno() {
         Alumno aux = new Alumno();
-        aux.setId(jtxtId.getText());
-        aux.setNombre(jtxtNombre.getText());
-        etc
-        .... 
+        aux.setId(Integer.parseInt(id1.getText()));
+        aux.setNombre(nombre1.getText());
+        aux.setApellido(apellido1.getText());
+        aux.setEdad(Integer.parseInt(edad1.getText()));
+         
         return aux;
 
     }
 
     @Override
     public void setAlumno(Alumno a) {
-        jtxtId.setText(a.getId());
-        jtxtNombre.setText(a.getNombre());
-        etc
-    
-
-    ....
+        id1.setText(a.getId()+"");
+        nombre1.setText(a.getNombre());
+        apellido1.setText(a.getApellido());
+        edad1.setText(a.getEdad()+"");
     }
 
     @Override
     public void setControlador(Controlador controlador) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.control= controlador;
+        siguiente.addActionListener(this.control);
+        anterior.addActionListener(this.control);
+        ultimo.addActionListener(this.control);
+        primero.addActionListener(this.control);
+        alta.addActionListener(this.control);
     }
 
     @Override
     public void mostrar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setVisible(true);
+        ActionEvent ae = new ActionEvent(this, 1, "Primero");
+        this.control.actionPerformed(ae);
     }
 
+    public static void main(String[] args) {
+        Modelo modelo = new Modelo();
+        Vista vista = new Vista();        
+        //VC_Calculadora vista = new VC_Calculadora();        
+        Controlador contrador = new Controlador(vista,modelo);        
+        
+        vista.setControlador(contrador);
+        vista.mostrar();
+    }
+
+    @Override
+    public void muestraMensaje(String s) {
+        JOptionPane.showMessageDialog(this, s, "Aviso", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
