@@ -30,24 +30,24 @@ public class Controlador implements ActionListener {
         Alumno aux, aux2;
         boolean flag;
         if (e.getActionCommand().equals("Siguiente")) {
-            aux = vista.getAlumno();
+            aux = vista.getObjeto();
             aux2 = modelo.siguiente(aux);
-            vista.setAlumno(aux2);
+            vista.setObjeto(aux2);
         } else if (e.getActionCommand().equals("Primero")) {
             aux2 = modelo.primero();
-            vista.setAlumno(aux2);
+            vista.setObjeto(aux2);
         } else if (e.getActionCommand().equals("Anterior")) {
-            aux2 = vista.getAlumno();
+            aux2 = vista.getObjeto();
             aux = modelo.anterior(aux2);
-            vista.setAlumno(aux);
+            vista.setObjeto(aux);
         } else if (e.getActionCommand().equals("Ultimo")) {
             aux = modelo.ultimo();
-            vista.setAlumno(aux);
+            vista.setObjeto(aux);
         } else if (e.getActionCommand().equals("Alta")) {
-            aux = vista.getAlumno();
+            aux = vista.getObjeto();
             modelo.alta(aux);
         } else if (e.getActionCommand().equals("Baja")) {
-            aux = vista.getAlumno();
+            aux = vista.getObjeto();
             flag = modelo.baja(aux);
             if (flag) {
                 vista.muestraMensaje("Baja realizada");
@@ -57,12 +57,12 @@ public class Controlador implements ActionListener {
         } else if (e.getActionCommand().equals("Modificar")) {
 
         } else if (e.getActionCommand().equals("Consulta")) {
-            aux = vista.getAlumno();
+            aux = vista.getObjeto();
             aux = modelo.consulta(aux.getId());
             if (aux == null) {
                 vista.muestraMensaje("No existe el alumno");
             } else {
-                vista.setAlumno(aux);
+                vista.setObjeto(aux);
             }
         } else if (e.getActionCommand().equals("CNombre")) {
 

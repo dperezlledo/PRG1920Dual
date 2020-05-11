@@ -16,7 +16,7 @@ import java.util.Arrays;
  *
  * @author javie
  */
-public class Modelo implements IDAO {
+public class Modelo implements IDAO<Alumno> {
 
     private Alumno clase[];
 

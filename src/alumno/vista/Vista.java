@@ -17,7 +17,7 @@ import javax.swing.*;
  *
  * @author javie
  */
-public class Vista extends JFrame implements IVista {
+public class Vista extends JFrame implements IVista<Alumno> {
 
     private GridLayout gl, gl1, gsur;
     private JButton siguiente, anterior, primero, ultimo,alta,limpiar, baja, modificar,consulta;
@@ -105,7 +105,7 @@ public class Vista extends JFrame implements IVista {
     }
 
     @Override
-    public Alumno getAlumno() {
+    public Alumno getObjeto() {
         Alumno aux = new Alumno();
         aux.setId(Integer.parseInt(id1.getText()));
         aux.setNombre(nombre1.getText());
@@ -117,7 +117,7 @@ public class Vista extends JFrame implements IVista {
     }
 
     @Override
-    public void setAlumno(Alumno a) {
+    public void setObjeto(Alumno a) {
         id1.setText(a.getId()+"");
         nombre1.setText(a.getNombre());
         apellido1.setText(a.getApellido());
@@ -139,16 +139,6 @@ public class Vista extends JFrame implements IVista {
         setVisible(true);
         ActionEvent ae = new ActionEvent(this, 1, "Primero");
         this.control.actionPerformed(ae);
-    }
-
-    public static void main(String[] args) {
-        Modelo modelo = new Modelo();
-        Vista vista = new Vista();        
-        //VC_Calculadora vista = new VC_Calculadora();        
-        Controlador contrador = new Controlador(vista,modelo);        
-        
-        vista.setControlador(contrador);
-        vista.mostrar();
     }
 
     @Override

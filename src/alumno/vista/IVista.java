@@ -12,9 +12,9 @@ import alumno.modelo.Alumno;
  *
  * @author David
  */
-public interface IVista {
-    public abstract Alumno getAlumno();
-    public abstract void setAlumno(Alumno a);
+public interface IVista<T> {
+    public abstract T getObjeto();
+    public abstract void setObjeto(T a);
     public void muestraMensaje(String s);
     
     public abstract void setControlador(Controlador controlador);

@@ -11,19 +11,19 @@ import alumno.modelo.Alumno;
  *
  * @author David
  */
-public interface IDAO {
+public interface IDAO<T> {
     // botones de navegacion
-    public Alumno primero();
-    public Alumno ultimo();
-    public Alumno siguiente(Alumno old);
-    public Alumno anterior(Alumno old);
+    public T primero();
+    public T ultimo();
+    public T siguiente(T old);
+    public T anterior(T old);
     // Operaciones CRUD
-    public boolean alta (Alumno a);
-    public boolean baja (Alumno a);
-    public boolean modificar (Alumno viejo, Alumno nuevo);
-    public Alumno consulta(int id);
+    public boolean alta (T a);
+    public boolean baja (T a);
+    public boolean modificar (T viejo, T nuevo);
+    public T consulta(int id);
     
     // Otros
-    public Alumno consultaPorNombre(String nombre);
+    public T consultaPorNombre(String nombre);
     
 }
