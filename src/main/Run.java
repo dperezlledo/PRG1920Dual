@@ -16,8 +16,8 @@ import mvc.vista.*;
 public class Run {
     public static void main(String[] args) {
         MCalculadora modelo = new MCalculadora();
-        VS_Calculadora vista = new VS_Calculadora();        
-        //VC_Calculadora vista = new VC_Calculadora();        
+        //VS_Calculadora vista = new VS_Calculadora();        
+        VC_Calculadora vista = new VC_Calculadora();        
         CCalculadora contrador = new CCalculadora(vista,modelo);        
         
         vista.setControlador(contrador);

@@ -20,15 +20,13 @@ import java.util.regex.Pattern;
 public class Practicos {
 
     public static void main(String[] args) {
-        Practicos p = new Practicos();
-
         try {
-            p.ejemplo2();
-        } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println("Se ha producido otro error desconocido");
+            Practicos p = new Practicos();
+            p.ejemplo3();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Practicos.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
     }
 

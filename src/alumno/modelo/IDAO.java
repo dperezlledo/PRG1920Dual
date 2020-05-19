@@ -18,7 +18,7 @@ public interface IDAO<T> {
     public T siguiente(T old);
     public T anterior(T old);
     // Operaciones CRUD
-    public boolean alta (T a);
+    public boolean alta (T a) throws Exception;
     public boolean baja (T a);
     public boolean modificar (T viejo, T nuevo);
     public T consulta(int id);

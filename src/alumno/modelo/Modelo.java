@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package alumno.modelo;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -80,18 +81,19 @@ public class Modelo implements IDAO<Alumno> {
         // Si no buscamos hasta el final el siguiente != null
         // Si no hubiera ningún siguiente le damos el mismo
         for (i = 0; i < clase.length; i++) {
-            if (clase[i]!=null && clase[i].equals(old)) {
+            if (clase[i] != null && clase[i].equals(old)) {
                 break;
             }
         }
-        if (i==clase.length-1) // Esta en la última posicion
+        if (i == clase.length - 1) // Esta en la última posicion
+        {
             return clase[i]; // devolvemos el mismo
-        else {
-            for (int j = i+1; j < clase.length; j++) {
-                        if (clase[j] != null) {
-                            return clase[j];
-                        }
-            }        
+        } else {
+            for (int j = i + 1; j < clase.length; j++) {
+                if (clase[j] != null) {
+                    return clase[j];
+                }
+            }
             return clase[i];
         }
     }
@@ -104,13 +106,22 @@ public class Modelo implements IDAO<Alumno> {
     }
 
     @Override
-    public boolean alta(Alumno a) {
-        for (int i = 0; i < clase.length; i++) {
-            if (clase[i] == null) {
-                clase[i] = a;
-                return true;
+    public boolean alta(Alumno a) throws Exception  {
+        Alumno aux;
+       
+        aux = consulta(a.getId());
+        if (aux == null) {
+            for (int i = 0; i < clase.length; i++) {
+                if (clase[i] == null) {
+                    clase[i] = a;
+                    return true;
+                }
             }
+        } else {
+            throw new Exception("El Alumno con código " + a.getId() + " ya existe en la BD");
         }
+        
+            
         return false;
     }
 
@@ -118,7 +129,7 @@ public class Modelo implements IDAO<Alumno> {
     public boolean baja(Alumno a) {
         // Buscar el alumno a borrar
         for (int i = 0; i < clase.length; i++) {
-            if (clase[i]!=null && clase[i].equals(a)) {
+            if (clase[i] != null && clase[i].equals(a)) {
                 clase[i] = null;
                 return true;
             }
@@ -130,7 +141,7 @@ public class Modelo implements IDAO<Alumno> {
     public boolean modificar(Alumno viejo, Alumno nuevo) {
         // Buscar el alumno a borrar
         for (int i = 0; i < clase.length; i++) {
-            if (clase[i]!=null && clase[i].equals(viejo)) {
+            if (clase[i] != null && clase[i].equals(viejo)) {
                 clase[i].setNombre(nuevo.getNombre());
                 clase[i].setApellido(nuevo.getApellido());
                 clase[i].setEdad(nuevo.getEdad());
@@ -143,21 +154,21 @@ public class Modelo implements IDAO<Alumno> {
     @Override
     public Alumno consulta(int id) {
         for (int i = 0; i < clase.length; i++) {
-            if (clase[i].getId() == id) {               
+            if (clase[i].getId() == id) {
                 return clase[i];
             }
         }
-        return  null;
+        return null;
     }
 
     @Override
     public Alumno consultaPorNombre(String nombre) {
-         for (int i = 0; i < clase.length; i++) {
-            if (clase[i].getNombre().equals(nombre)) {               
+        for (int i = 0; i < clase.length; i++) {
+            if (clase[i].getNombre().equals(nombre)) {
                 return clase[i];
             }
         }
-        return  null;
+        return null;
     }
 
 }
