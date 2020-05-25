@@ -5,24 +5,29 @@ public class InsertarDep {
 
     public static void main(String[] args) {
         int filas;
-        String dep="50", dnombre="PUBLICIDAD", loc="LOGROÑO";
+        String  dnombre="Juan";
+        int id =5, edad=33;
         try {
             // EJEMPLO CONEXION A MYSQL
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "ejemplo", "ejemplo");
+//            Class.forName("com.mysql.jdbc.Driver");
+//            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "ejemplo", "ejemplo");
+            
             // EJEMPLO CONEXION A ORACLE
             /* Class.forName("oracle.jdbc.driver.OracleDriver");
 	       Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE",	"ejemplo", "ejemplo");
              */
-
+            // EJEMPLO CONEXION SQLITE
+            Class.forName("org.sqlite.JDBC");
+            Connection conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Mibasedatos.dat");
+            
             //construir orden INSERT	        
-            String sql = String.format("INSERT INTO departamentos VALUES (%s, '%s', '%s')", dep, dnombre, loc);
+            String sql = "INSERT INTO Alumno VALUES (" + id + ", '" + dnombre + "', " + edad + ")";
             System.out.println(sql);
 
             Statement sentencia = conexion.createStatement();
             filas = 0;
             try {
-                filas = sentencia.executeUpdate(sql.toString());
+                filas = sentencia.executeUpdate(sql);
                 System.out.println("Filas afectadas: " + filas);
             } catch (SQLException e) {
                 //e.printStackTrace();

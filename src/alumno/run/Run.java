@@ -6,6 +6,7 @@
 package alumno.run;
 
 import alumno.controlador.Controlador;
+import alumno.modelo.AlumnoDAOSQLiteImp;
 import alumno.modelo.Modelo;
 import alumno.vista.Vista;
 
@@ -17,7 +18,7 @@ public class Run {
 
      public static void main(String[] args) {
         Vista v = new Vista();
-        Modelo m = new Modelo();
+         AlumnoDAOSQLiteImp m = new AlumnoDAOSQLiteImp();
         Controlador c = new Controlador(v, m);
 
         v.setControlador(c);
