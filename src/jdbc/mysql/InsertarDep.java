@@ -1,17 +1,18 @@
 package jdbc.mysql;
+
 import java.sql.*;
 
 public class InsertarDep {
 
     public static void main(String[] args) {
         int filas;
-        String  dnombre="Juan";
-        int id =5, edad=33;
+        String dnombre = "David";
+        int id = 5, edad = 13;
         try {
             // EJEMPLO CONEXION A MYSQL
 //            Class.forName("com.mysql.jdbc.Driver");
 //            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "ejemplo", "ejemplo");
-            
+
             // EJEMPLO CONEXION A ORACLE
             /* Class.forName("oracle.jdbc.driver.OracleDriver");
 	       Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE",	"ejemplo", "ejemplo");
@@ -19,7 +20,7 @@ public class InsertarDep {
             // EJEMPLO CONEXION SQLITE
             Class.forName("org.sqlite.JDBC");
             Connection conexion = DriverManager.getConnection("jdbc:sqlite:D:\\Mibasedatos.dat");
-            
+
             //construir orden INSERT	        
             String sql = "INSERT INTO Alumno VALUES (" + id + ", '" + dnombre + "', " + edad + ")";
             System.out.println(sql);
@@ -35,6 +36,7 @@ public class InsertarDep {
                 System.out.printf("Mensaje   : %s %n", e.getMessage());
                 System.out.printf("SQL estado: %s %n", e.getSQLState());
                 System.out.printf("C�d error : %s %n", e.getErrorCode());
+                
             }
 
             sentencia.close(); // Cerrar Statement

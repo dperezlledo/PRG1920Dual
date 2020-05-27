@@ -24,7 +24,7 @@ public class AlumnoDAOSQLiteImp implements IDAO<Alumno> {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            conexion = DriverManager.getConnection("jdbc:sqlite:D:/ejemplo.db");
+            conexion = DriverManager.getConnection("jdbc:sqlite:D:\\mibasedatos.dat");
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AlumnoDAOSQLiteImp.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,7 +65,7 @@ public class AlumnoDAOSQLiteImp implements IDAO<Alumno> {
             int filas = sentencia.executeUpdate(sql);
             System.out.println("Filas afectadas: " + filas);
         } catch (SQLException e) {
-            System.out.println("" + e.getMessage());
+           System.out.println("" + e.getMessage());
            return false;
         }
 

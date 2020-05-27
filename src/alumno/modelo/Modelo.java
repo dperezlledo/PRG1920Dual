@@ -19,7 +19,7 @@ import java.util.Arrays;
  */
 public class Modelo implements IDAO<Alumno> {
 
-    private Alumno clase[];
+    private Alumno[] clase;
 
     public Modelo() {
         clase = new Alumno[13];
